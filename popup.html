@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── ONBOARDING ─────────────────────────────────────── -->
+  <div id="onboarding" class="screen">
+    <div class="onboard-card">
+      <div class="onboard-logo">⚔️</div>
+      <h1 class="onboard-title">Memora</h1>
+      <p class="onboard-sub">Choose your hero</p>
+      <div class="gender-row">
+        <button class="gender-btn" data-gender="boy">
+          <div class="gender-avatar boy-preview"></div>
+          <span>Boy</span>
+        </button>
+        <button class="gender-btn" data-gender="girl">
+          <div class="gender-avatar girl-preview"></div>
+          <span>Girl</span>
+        </button>
+      </div>
+      <button id="onboard-confirm" class="confirm-btn" disabled>Begin Quest ▶</button>
+    </div>
+  </div>
+
+  <!-- ── MAIN ───────────────────────────────────────────── -->
+  <div id="main" class="screen hidden">
+
+    <div id="levelup-banner" class="levelup-banner">⚔️ LEVEL UP! ⚔️</div>
+    <div id="xp-toast" class="xp-toast"></div>
+
+    <div class="card">
+
+      <div class="header">
+        <div>
+          <h2 class="title">Memora</h2>
+          <div class="header-sub-row">
+            <div id="level-title" class="level-title-text">Novice</div>
+            <div id="tier-label" class="tier-label"></div>
+          </div>
+        </div>
+        <div class="level-badge">LVL <span id="level-number">1</span></div>
+      </div>
+
+      <!-- Character -->
+      <div class="character-box" id="character-box">
+        <div class="character-glow"></div>
+        <div id="tier-badge" class="tier-badge"></div>
+        <video id="chibi-video" autoplay loop muted playsinline width="130"></video>
+      </div>
+
+      <!-- Stats -->
+      <div class="stat">
+        <div class="stat-header">
+          <label>⚡ Energy</label>
+          <span id="energy-label" class="stat-val">80%</span>
+        </div>
+        <div class="bar"><div id="energy-fill" style="width:80%"></div></div>
+      </div>
+      <div class="stat">
+        <div class="stat-header">
+          <label>✨ XP</label>
+          <span id="xp-label" class="stat-val">0 / 100 XP</span>
+        </div>
+        <div class="bar"><div id="xp-fill" style="width:0%"></div></div>
+      </div>
+
+      <!-- Mood -->
+      <div class="mood-section">
+        <div class="mood-label">How are you feeling?</div>
+        <div class="mood-row">
+          <button class="mood-btn" data-mood="happy">😊<span>Happy</span></button>
+          <button class="mood-btn" data-mood="neutral">😐<span>Neutral</span></button>
+          <button class="mood-btn" data-mood="stressed">😓<span>Stressed</span></button>
+          <button class="mood-btn" data-mood="tired">😴<span>Tired</span></button>
+        </div>
+      </div>
+
+      <!-- Quest / Mini Game -->
+      <div class="quest-box" id="quest-box">
+        <div class="quest-header">
+          <span id="quest-icon">🎮</span>
+          <span id="quest-title">Daily Quest</span>
+          <span id="quest-timer" class="quest-timer hidden"></span>
+        </div>
+
+        <!-- Idle state -->
+        <div id="quest-idle">
+          <div id="page-badge" class="page-badge hidden"></div>
+          <p id="quest-preview" class="quest-preview">Solve a challenge, earn XP!</p>
+          <button id="start-btn" class="start-btn">⚔️ Start Quest</button>
+        </div>
+
+        <!-- Game area -->
+        <div id="quest-game" class="hidden">
+
+          <!-- WORD SCRAMBLE -->
+          <div id="game-scramble" class="game hidden">
+            <p class="game-label">Unscramble the word:</p>
+            <div id="scramble-word" class="big-word"></div>
+            <div class="letter-hint" id="scramble-hint"></div>
+            <input id="scramble-input" class="game-input" type="text" placeholder="Type your answer…" maxlength="12" autocomplete="off">
+            <button class="game-btn" id="scramble-submit">Check ✓</button>
+            <p id="scramble-feedback" class="feedback"></p>
+          </div>
+
+          <!-- MATH BLITZ -->
+          <div id="game-math" class="game hidden">
+            <p class="game-label">Solve as fast as you can:</p>
+            <div id="math-question" class="big-word"></div>
+            <input id="math-input" class="game-input" type="number" placeholder="Answer…">
+            <button class="game-btn" id="math-submit">Check ✓</button>
+            <p id="math-feedback" class="feedback"></p>
+            <p id="math-score" class="score-counter">Score: 0</p>
+          </div>
+
+          <!-- MEMORY SEQUENCE -->
+          <div id="game-memory" class="game hidden">
+            <p class="game-label" id="memory-label">Watch the sequence!</p>
+            <div id="memory-grid" class="memory-grid"></div>
+            <p id="memory-feedback" class="feedback"></p>
+          </div>
+
+          <!-- WORD CHAIN -->
+          <div id="game-chain" class="game hidden">
+            <p class="game-label">Each word must start with the last letter of the previous!</p>
+            <div id="chain-display" class="chain-display"></div>
+            <input id="chain-input" class="game-input" type="text" placeholder="Type a word…" autocomplete="off">
+            <button class="game-btn" id="chain-submit">Add ✓</button>
+            <p id="chain-feedback" class="feedback"></p>
+            <p id="chain-score" class="score-counter">Chain: 0</p>
+          </div>
+
+          <!-- EMOJI TRIVIA -->
+          <div id="game-trivia" class="game hidden">
+            <p class="game-label">What does this emoji combo mean?</p>
+            <div id="trivia-emoji" class="big-word" style="font-size:28px;letter-spacing:4px"></div>
+            <div id="trivia-options" class="trivia-options"></div>
+            <p id="trivia-feedback" class="feedback"></p>
+            <p id="trivia-score" class="score-counter">Score: 0</p>
+          </div>
+
+          <button id="skip-btn" class="skip-btn">Skip ›</button>
+        </div>
+
+        <!-- Result state -->
+        <div id="quest-result" class="hidden">
+          <div id="result-emoji" class="result-emoji"></div>
+          <p id="result-msg" class="result-msg"></p>
+          <button id="result-next" class="start-btn">Next Quest ⚔️</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
