@@ -78,8 +78,8 @@ List the key features of your project:
 
 ## Team Contributions
 
-- [Name 1]: [Specific contributions - e.g., Frontend development, API integration, etc.]
-- [Name 2]: [Specific contributions - e.g., Backend development, Database design, etc.]
+- Neha Fathima B: Specific contributions - Design, UX, Asset, Game Planner.
+- Alina Elizabeth Biju: Specific contributions - Extension setup, Game logic, Debugging.
 
 ---
 
